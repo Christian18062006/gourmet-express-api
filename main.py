@@ -24,6 +24,12 @@ foods_db = [
     {"name": "Empanadas", "author": "Sofia Fernández", "recipe": "Recheie a massa com carne e asse ou frite", "preparation_time": 40},
     {"name": "Poutine", "author": "Luc Tremblay", "recipe": "Cubra batatas fritas com queijo e molho", "preparation_time": 20}
 ]
+@app.get("/")
+async def root():
+    return {"":"Hello welcome to gourmet express."}
+@app.get("/foods",response_model=List[Food])
+async def list_foods():
+    return foods_db
 class Food(BaseModel):
     name:str
     author:str
