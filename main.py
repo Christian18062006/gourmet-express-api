@@ -2,6 +2,12 @@ from fastapi import FastAPI
 from typing import List
 from pydantic import BaseModel
 app=FastAPI()
+
+class Food(BaseModel):
+    name:str
+    author:str
+    recipe:str
+    preparation_time:int
 foods_db = [
     {"name": "Spaghetti Bolognese", "author": "Carlos Christian", "recipe": "Cozinhe o espaguete com molho bolonhesa", "preparation_time": 30},
     {"name": "Feijoada", "author": "Ana Maria", "recipe": "Feijão preto com carne de porco e linguiça", "preparation_time": 120},
@@ -30,8 +36,3 @@ async def root():
 @app.get("/foods",response_model=List[Food])
 async def list_foods():
     return foods_db
-class Food(BaseModel):
-    name:str
-    author:str
-    recipe:str
-    preparation_time:int
